@@ -38,12 +38,18 @@ section{
 			margin-left: 5px;
 		}
 	}
-	#table{
+	.table{
 		padding: 0;
+	}
+	.info-top{
+		padding-left: 30px;
+		.card{
+			margin-right: 30px;
+		}
 	}
 }
 
-@media only screen and(max-width: 768px){
+@media only screen and(max-width: 767px){
 	section{
 		.nav-left{
 			display: none;

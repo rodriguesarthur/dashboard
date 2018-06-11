@@ -27,10 +27,23 @@ var ctx = document.getElementById('myDoughnutChart').getContext('2d');
 var chart = new Chart(ctx, {
 	type: 'doughnut',
 	data: {
-		labels: ['Resolvido','Cancelado','Pendente'],
+		labels: ['Abertos', 'Resolvidos','Cancelados'],
 		datasets: [{
-			data: [15, 20, 25],
-			backgroundColor: ['#7CDA90','#FF6384','#5FA0C3']
+			data: [220, 170, 50],
+			backgroundColor: ['#5FA0C3', '#7CDA90','#FF6384']
 		}]
 	}
+});
+
+// DOUGHNUT CHART
+var ctx = document.getElementById('myPieChart').getContext('2d');
+var chart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Abertos', 'Resolvidos','Cancelados'],
+        datasets: [{
+            data: [220, 170, 50],
+            backgroundColor: ['#5FA0C3', '#7CDA90','#FF6384']
+        }]
+    }
 });

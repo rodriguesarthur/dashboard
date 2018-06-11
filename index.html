@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="dashboard">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -8,6 +8,9 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<title>Dashboard</title>
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+		<link rel="stylesheet" href="css/circle.css">
+		<script src="lib/angular.min.js"></script>
+		<script type="text/javascript" src="js/data-tables.js"></script>
 	</head>
 	<body>
 
@@ -23,8 +26,13 @@
 
 			</div><!-- nav-left -->
 
+
 			<!-- container-fluid -->
 			<div class="col-md-10 container-fluid float-right">
+
+			<!-- <div class="circlechart" data-percentage="50">
+				50%
+			</div> -->
 
 				<nav class="title-page" aria-label="breadcrumb">
 				  <ol class="breadcrumb">
@@ -32,6 +40,35 @@
     				<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
 				  </ol>
 				</nav>
+
+				<div class="info-top row col-lg-12"><!-- info-top -->
+
+					<div class="card text-white bg-info mb-3 col-md-4" style="max-width: 18rem;">
+					  <div class="card-body">
+					    <h5 class="card-title">Chamados Abertos</h5>
+					    <p class="card-text">220
+					    	<i class="fas fa-folder-open float-right"></i>
+					    </p>
+					  </div>
+					</div>
+					<div class="card text-white bg-success mb-3 col-md-4" style="max-width: 18rem;">
+					  <div class="card-body">
+					    <h5 class="card-title">Fechados Concluídos</h5>
+					    <p class="card-text">170
+					    	<i class="fas fa-check-circle float-right"></i>
+					    </p>
+					  </div>
+					</div>
+					<div class="card text-white bg-danger mb-3 col-md-4" style="max-width: 18rem;">
+					  <div class="card-body">
+					    <h5 class="card-title">Fechados Cancelados</h5>
+					    <p class="card-text">50
+					    	<i class="fas fa-ban float-right"></i>
+					    </p>
+					  </div>
+					</div>
+					
+				</div><!-- info-top -->
 
 				<div class="row col-lg-12"><!-- row col-lg-12 -->
 					
@@ -50,7 +87,7 @@
 						  </div>
 						</div>
 					</div><!-- relatorio -->
-					<div class="col-md-4"><!-- Doughnutchart -->
+					<div class="doughnut col-md-4"><!-- Doughnutchart -->
 						<div class="card">
 						  <div class="card-header">
 						    <i class="fas fa-chart-pie"></i>
@@ -68,76 +105,56 @@
 
 				</div><!-- row col-lg-12 -->
 
-				<div id="table" class="card col-lg-12"><!-- table -->
-				  <div class="card-header">
-				    <i class="fas fa-table"></i>
-				    <span>Table</span>
-				  </div>
-				  <div class="card-body">
-				  	<div class="table-responsive">
-					    <table class="table table-striped table-hover">
-					    	<thead class="table-dark">
-						    	<tr>
-							    	<th scope="col">Nome</th>
-							    	<th scope="col">Telefone</th>
-							    	<th scope="col">Cargo</th>
-							    	<th scope="col">Salário</th>
-							    	<th scope="col">Salário</th>
-							    	<th scope="col">Salário</th>
-							    	<th scope="col">Salário</th>
-							    	<th scope="col">Salário</th>
-							    </tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1111111</td>
-									<td>1111111</td>
-									<td>1111111</td>
-									<td>1111111</td>
-									<td>1111111</td>
-									<td>1111111</td>
-									<td>1111111</td>
-									<td>1111111</td>
-								</tr>
-								<tr>
-									<td>2222222</td>
-									<td>2222222</td>
-									<td>2222222</td>
-									<td>2222222</td>
-									<td>2222222</td>
-									<td>2222222</td>
-									<td>2222222</td>
-									<td>2222222</td>
-								</tr>
-								<tr>
-									<td>33333333</td>
-									<td>33333333</td>
-									<td>33333333</td>
-									<td>33333333</td>
-									<td>33333333</td>
-									<td>33333333</td>
-									<td>33333333</td>
-									<td>33333333</td>
-								</tr>
-								<tr>
-									<td>44444444</td>
-									<td>44444444</td>
-									<td>44444444</td>
-									<td>44444444</td>
-									<td>44444444</td>
-									<td>44444444</td>
-									<td>44444444</td>
-									<td>44444444</td>
-								</tr>
-							</tbody>
-					    </table>
+				<div class="row col-lg-12">
+					<div class="pie col-md-4">
+						<div class="card">
+							<div class="card-header">
+							    <i class="fas fa-chart-pie"></i>
+							    <span>Pie Chart</span>
+							</div>
+							<div class="card-body">
+								<canvas id="myPieChart"></canvas>
+							</div>
+							<div class="card-footer text-muted">
+							    <i class="fas fa-sync-alt"></i>
+							    <span>Última atualização: 2 dias</span>
+						  </div>
+					  </div>
 					</div>
-				  </div>
-				  <div class="card-footer text-muted">
-				    <i class="fas fa-sync-alt"></i>
-				    <span>Última atualização: 2 dias</span>
-				  </div>
-				</div><!-- table -->
+
+					<div class="table card col-md-8"><!-- table -->
+					  <div class="card-header">
+					    <i class="fas fa-table"></i>
+					    <span>Table</span>
+					  </div>
+					  <div class="card-body">
+					  	<div class="table-responsive">
+						    <table ng-controller="table-task" class="table table-striped table-hover text-center">
+						    	<thead class="table-dark">
+							    	<tr>
+								    	<th scope="col">Solicitação</th>
+								    	<th scope="col">Status</th>
+								    	<th scope="col">Início</th>
+								    	<th scope="col">Final</th>								    	
+								    </tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="task in task">
+										<td>{{task.solicitacao}}</td>
+										<td>{{task.status}}</td>
+										<td>{{task.inicio}}</td>
+										<td>{{task.final}}</td>
+									</tr>
+								</tbody>
+						    </table>
+						</div>
+					  </div>
+					  <div class="card-footer text-muted">
+					    <i class="fas fa-sync-alt"></i>
+					    <span>Última atualização: 2 dias</span>
+					  </div>
+					</div><!-- table -->
+				</div>
 
 			</div><!-- container-fluid -->
 		</section>
@@ -151,5 +168,6 @@
 		<script src="js/data-chart.js"></script>
 		<script src="js/data-tables.js"></script>
 		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+		<script src="js/circle.js"></script>
 	</body>
 </html>
