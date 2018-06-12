@@ -29,12 +29,14 @@ section {
       margin-left: 5px; }
   section .table {
     padding: 0; }
+  section .table-responsive {
+    height: 350px; }
   section .info-top {
     padding-left: 30px; }
     section .info-top .card {
       margin-right: 30px; }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 992px) {
   section .nav-left {
     display: none; } }
 

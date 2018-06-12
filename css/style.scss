@@ -41,6 +41,9 @@ section{
 	.table{
 		padding: 0;
 	}
+	.table-responsive{
+		height: 350px;
+	}
 	.info-top{
 		padding-left: 30px;
 		.card{
@@ -49,7 +52,7 @@ section{
 	}
 }
 
-@media only screen and(max-width: 767px){
+@media only screen and(max-width: 992px){
 	section{
 		.nav-left{
 			display: none;
