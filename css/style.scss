@@ -21,6 +21,32 @@ header{
 }
 
 section{
+
+	.nav-left{
+		padding: 0;
+		padding-top: 20px;
+		.search{
+			padding: 0 20px;
+			a{
+				i{color: $white;}
+			}
+		}
+		.nav-list{
+			margin-top: 30px;
+			li{
+				a{
+					color: #868e96;
+					i{
+						margin-right: 10px;
+					}
+				}
+			}
+			.nav-item{
+				&:hover{background-color: #49515A;}
+			}
+		}
+	}
+
 	position: relative;
 	top: 60px;
 	.nav-left{
